@@ -28,5 +28,11 @@
     <ClInclude Include="GraphADT.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Edge.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
