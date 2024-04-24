@@ -28,10 +28,13 @@
     <ClInclude Include="GraphADT.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Graph.h">
+    <ClInclude Include="Graphm.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Edge.h">
+    <ClInclude Include="MST.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="book.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

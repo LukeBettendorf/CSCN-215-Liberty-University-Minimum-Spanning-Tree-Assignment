@@ -1,19 +1,21 @@
 #pragma once
 
 #include "GraphADT.h"
-#include "Edge.h"
 #include <assert.h>
+#include <fstream>
+#include <string>
 //This entire class is copied from our textbook:
 //
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
 // Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 // 
-// Used by: Luke Bettendorf, CSCN 215-003
+// Modified by: Luke Bettendorf, CSCN 215-003
 // Date: 4/23/2024
 
 // Implementation for the adjacency matrix representation
-const int UNVISITED = 0; // For nodes
+const int UNVISITED = 1; // For nodes
+const int VISITED = 0; // For nodes
 class Graphm : public Graph {
 private:
 	int numVertex, numEdge; // Store number of vertices, edges
@@ -21,7 +23,8 @@ private:
 	// Pointer to adjacency matrix
 	int* mark;
 public:
-	Graphm(int numVert)
+	//Default constructor
+	Graphm(int numVert=5)
 	{
 		Init(numVert);
 	}
@@ -73,7 +76,7 @@ public:
 		if (matrix[v1][v2] == 0) numEdge++;
 		matrix[v1][v2] = wt;
 	}
-		void delEdge(int v1, int v2) { // Delete edge (v1, v2)
+	void delEdge(int v1, int v2) { // Delete edge (v1, v2)
 		if (matrix[v1][v2] != 0) numEdge--;
 		matrix[v1][v2] = 0;
 	}
@@ -84,5 +87,35 @@ public:
 	int weight(int v1, int v2) { return matrix[v1][v2]; }
 	int getMark(int v) { return mark[v]; }
 	void setMark(int v, int val) { mark[v] = val; }
+
+	//This function prints out the matrix.
+	void printMatrix()
+	{
+		for (int i = 0; i < numVertex; i++)
+		{
+			for (int j = 0; j < numVertex; j++)
+			{
+				std::cout << matrix[i][j] << " ";
+			}
+			std::cout << std::endl;
+		}
+	}
+	//This function prints the matrix to a new file.
+	//The 1 argument accepted is the name of the file to write to.
+	//If the file already exists, it will be overwritten.
+	void printToFile(std::string fileName)
+	{
+		std::ofstream file;
+		file.open(fileName);
+		for (int i = 0; i < numVertex; i++)
+		{
+			for (int j = 0; j < numVertex; j++)
+			{
+				file << matrix[i][j] << " ";
+			}
+			file << std::endl;
+		}
+		file.close();
+	}
 };
 
