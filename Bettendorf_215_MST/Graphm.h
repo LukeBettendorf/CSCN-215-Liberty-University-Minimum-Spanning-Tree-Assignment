@@ -4,16 +4,17 @@
 #include <assert.h>
 #include <fstream>
 #include <string>
-//This entire class is copied from our textbook:
+//This class is copied from our textbook:
 //
 // "A Practical Introduction to Data Structures and Algorithm Analysis,
 // Third Edition (C++)" by Clifford A. Shaffer.
 // Source code Copyright (C) 2007-2011 by Clifford A. Shaffer.
 // 
 // Modified by: Luke Bettendorf, CSCN 215-003
-// Date: 4/23/2024
+// Date: 4/24/2024
 
 // Implementation for the adjacency matrix representation
+//Constants:
 const int UNVISITED = 1; // For nodes
 const int VISITED = 0; // For nodes
 class Graphm : public Graph {
@@ -88,9 +89,15 @@ public:
 	int getMark(int v) { return mark[v]; }
 	void setMark(int v, int val) { mark[v] = val; }
 
+	//Functions NOT copied from the textbook:
 	//This function prints out the matrix.
 	void printMatrix()
 	{
+		std::cout << std::endl;
+		//Print the number of vertices and edges
+		std::cout << "Number of Vertices is " << numVertex << std::endl;
+		std::cout << "Number of Edges is " << numEdge << std::endl;
+		//Print the matrix
 		for (int i = 0; i < numVertex; i++)
 		{
 			for (int j = 0; j < numVertex; j++)
@@ -105,8 +112,10 @@ public:
 	//If the file already exists, it will be overwritten.
 	void printToFile(std::string fileName)
 	{
+		//Open the file
 		std::ofstream file;
 		file.open(fileName);
+		//Write the matrix to the file
 		for (int i = 0; i < numVertex; i++)
 		{
 			for (int j = 0; j < numVertex; j++)
@@ -115,6 +124,7 @@ public:
 			}
 			file << std::endl;
 		}
+		//Close the file
 		file.close();
 	}
 };
